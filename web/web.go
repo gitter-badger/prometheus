@@ -14,6 +14,7 @@
 package web
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -140,6 +141,7 @@ func New(st local.Storage, qe *promql.Engine, rm *rules.Manager, status *Prometh
 	router.Get("/", instrf("status", h.statush))
 	router.Get("/alerts", instrf("alerts", h.alerts))
 	router.Get("/graph", instrf("graph", h.graph))
+	router.Get("/version", instrf("version", h.version))
 
 	router.Get("/heap", instrf("heap", dumpHeap))
 
@@ -270,6 +272,13 @@ func (h *Handler) statush(w http.ResponseWriter, r *http.Request) {
 		Status: h.status,
 		Info:   version.Map,
 	})
+}
+
+func (h *Handler) version(w http.ResponseWriter, r *http.Request) {
+	dec := json.NewEncoder(w)
+	if err := dec.Encode(version.Map); err != nil {
+		http.Error(w, fmt.Sprintf("error encoding json: %s", err), http.StatusInternalServerError)
+	}
 }
 
 func (h *Handler) quit(w http.ResponseWriter, r *http.Request) {
