@@ -31,6 +31,7 @@ RUN apk add --update -t build-deps go git mercurial \
 
 EXPOSE     9090
 WORKDIR    /prometheus
+VOLUME     [ "/prometheus" ]
 ENTRYPOINT [ "/bin/prometheus" ]
 CMD        [ "-config.file=/etc/prometheus/prometheus.yml", \
              "-storage.local.path=/prometheus", \
