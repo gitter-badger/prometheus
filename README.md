@@ -1,5 +1,7 @@
 # Prometheus [![Build Status](https://travis-ci.org/prometheus/prometheus.svg)](https://travis-ci.org/prometheus/prometheus)
 
+[![Join the chat at https://gitter.im/fin09pcap/prometheus](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fin09pcap/prometheus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Prometheus is a systems and service monitoring system. It collects metrics
 from configured targets at given intervals, evaluates rule expressions,
 displays the results, and can trigger alerts if some condition is observed
